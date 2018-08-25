@@ -1,0 +1,46 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS `risks_riskvalue` (
+	`id`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`value`	varchar ( 128 ) NOT NULL,
+	`fieldtype_id`	integer NOT NULL UNIQUE,
+	`riskheader_id`	integer NOT NULL,
+	FOREIGN KEY(`fieldtype_id`) REFERENCES `risks_fieldtype`(`id`) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY(`riskheader_id`) REFERENCES `risks_riskheader`(`id`) DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS `risks_risktype` (
+	`id`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`name`	varchar ( 128 ) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS `risks_riskheader` (
+	`id`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`risktype_id`	integer NOT NULL,
+	`ref`	varchar ( 128 ) NOT NULL,
+	`datecreated`	date NOT NULL,
+	FOREIGN KEY(`risktype_id`) REFERENCES `risks_risktype`(`id`) DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS `risks_fieldtype` (
+	`id`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`field_label`	varchar ( 32 ) NOT NULL,
+	`risktype_id`	integer NOT NULL,
+	`field_type`	varchar ( 32 ) NOT NULL,
+	FOREIGN KEY(`risktype_id`) REFERENCES `risks_risktype`(`id`) DEFERRABLE INITIALLY DEFERRED
+);
+CREATE TABLE IF NOT EXISTS `risks_fieldoptions` (
+	`id`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`options`	varchar ( 128 ) NOT NULL,
+	`fieldtype_id`	integer NOT NULL,
+	FOREIGN KEY(`fieldtype_id`) REFERENCES `risks_fieldtype`(`id`) DEFERRABLE INITIALLY DEFERRED
+);
+CREATE INDEX IF NOT EXISTS `risks_riskvalue_riskheader_id_cedf5a3a` ON `risks_riskvalue` (
+	`riskheader_id`
+);
+CREATE INDEX IF NOT EXISTS `risks_riskheader_risktype_id_9d370a1c` ON `risks_riskheader` (
+	`risktype_id`
+);
+CREATE INDEX IF NOT EXISTS `risks_fieldtype_risktype_id_ac4f0071` ON `risks_fieldtype` (
+	`risktype_id`
+);
+CREATE INDEX IF NOT EXISTS `risks_fieldoptions_fieldtype_id_25a35092` ON `risks_fieldoptions` (
+	`fieldtype_id`
+);
+COMMIT;

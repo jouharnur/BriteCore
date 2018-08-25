@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FieldType, RiskType, FieldOptions, RiskValue
+from .models import FieldType, RiskType, FieldOptions, RiskHeader, RiskValue
 # Register your models here.
 @admin.register(FieldType)
 class FieldTypeAdmin(admin.ModelAdmin):
@@ -14,8 +14,13 @@ class FieldoptionsAdmin(admin.ModelAdmin):
     list_display=('options',)
 
 
+@admin.register(RiskHeader)
+class RiskHeaderAdmin(admin.ModelAdmin):
+    list_display=('id',)
+    
+
 @admin.register(RiskValue)
-class RiskvalueAdmin(admin.ModelAdmin):
-    list_display=('risktype','fieldtype','value')
+class RiskValueAdmin(admin.ModelAdmin):
+    list_display=('id',)
     
 

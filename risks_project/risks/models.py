@@ -4,8 +4,10 @@ from django.db import models
 class RiskType(models.Model):
 
     name = models.CharField(max_length=128)
+
     def __str__(self):
         return self.name
+
 
 class FieldType(models.Model):
     
@@ -17,16 +19,27 @@ class FieldType(models.Model):
     def __str__(self):
         return self.field_label
 
-class RiskValue(models.Model):
 
+class RiskHeader(models.Model):
+
+    ref = models.CharField(max_length=128)
+    datecreated = models.DateField(auto_now_add=True)
     risktype = models.ForeignKey(RiskType, on_delete=models.CASCADE)
+
+
+class RiskValue(models.Model):
+    
     fieldtype = models.OneToOneField(FieldType, on_delete=models.CASCADE)
     value = models.CharField(max_length=128)
+    riskheader = models.ForeignKey(RiskHeader, related_name='values', on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.fieldtype.field_label + ":" + self.value
 
+
 class FieldOptions(models.Model):
     options = models.CharField(max_length=128)
-    fields = models.ForeignKey(FieldType, on_delete=models.CASCADE)
+    fieldtype = models.ForeignKey(FieldType, related_name='options', on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.options
