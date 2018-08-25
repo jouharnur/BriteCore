@@ -62,7 +62,7 @@ class App extends React.Component {
                     </Navbar.Heading>
                     <Navbar.Divider />
                     
-                    <Button className="bp3-minimal" icon="document" text="risks" onClick={()=>{history.push('/')}} />                
+                    <Button className="bp3-minimal" icon="document" text="Risks" onClick={()=>{history.push('/')}} />                
                     <Button className="bp3-minimal" icon="cog" text="" onClick={()=>{history.push('/risksconfig')}} />                
                 </Navbar.Group>
                 {
