@@ -10,5 +10,5 @@ This test purpose product is developed using Django as backend and React for the
 - npm start
 - open your browser and open 'localhost:8080'
 
-# P.S 
-- Its still a work in progress. 
+# Remaining
+- Though the model is setup for recording data, the front end is not complete yet.
