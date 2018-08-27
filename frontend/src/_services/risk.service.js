@@ -1,4 +1,4 @@
-import config from 'config';
+//import config from 'config';
 import { authHeader } from '../_helpers';
 
 export const riskService = {
@@ -16,7 +16,7 @@ function get_list_risks()
         headers: authHeader()
     };
     
-    return fetch(`${config.apiUrl}/api/risks/`, requestOptions).then(handleResponse);
+    return fetch(`/api/risks/`, requestOptions).then(handleResponse);
 
 }
 
@@ -28,7 +28,7 @@ function get(id){
     };
 
     
-    return fetch(`${config.apiUrl}/api/risks/${id}/`, requestOptions).then(handleResponse);
+    return fetch(`/api/risks/${id}/`, requestOptions).then(handleResponse);
 
 }
 
@@ -41,7 +41,7 @@ function getAll() {
         headers: authHeader()
     };
     
-    return fetch(`${config.apiUrl}/api/risksdata/?${urlParameters}`, requestOptions).then(handleResponse);
+    return fetch(`/api/risksdata/?${urlParameters}`, requestOptions).then(handleResponse);
 }
 
 //update and delete

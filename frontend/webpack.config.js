@@ -33,8 +33,17 @@ module.exports = {
         inject: 'body'
     })],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        publicPath: '/',
+        proxy: {
+          '/api/**': {
+            target: 'http://localhost:8000',
+            secure: false,
+            changeOrigin: true,
+          }
+        },
     },
+    
     externals: {
         // global app config object
         config: JSON.stringify({

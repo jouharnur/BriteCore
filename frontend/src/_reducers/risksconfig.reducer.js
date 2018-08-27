@@ -26,11 +26,10 @@ export function risksconfig(state = {}, action) {
       };
     case riskconfigConstants.DELETE_SUCCESS:
       
-      return {
-        ...state,
-        items:allitems,
-        deleting:false
-      };  
+      return 
+        state;
+        
+      
       case riskconfigConstants.DELETE_FAILURE:
       return {
         ...state,

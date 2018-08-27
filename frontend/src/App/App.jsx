@@ -58,7 +58,7 @@ class App extends React.Component {
             
                 <Navbar.Group align={Alignment.RIGHT}>
                     <Navbar.Heading>
-                    Insurance Risks
+                    BritCore Insurance Risks
                     </Navbar.Heading>
                     <Navbar.Divider />
                     

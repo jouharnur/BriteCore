@@ -1,4 +1,4 @@
-import config from 'config';
+//import config from 'config';
 import { authHeader } from '../_helpers';
 
 export const riskconfigService = {
@@ -16,7 +16,7 @@ function get(id){
     };
 
     
-    return fetch(`${config.apiUrl}/api/risks/${id}/`, requestOptions).then(handleResponse);
+    return fetch(`/api/risks/${id}/`, requestOptions).then(handleResponse);
 
 }
 
@@ -29,7 +29,7 @@ function getAll() {
         headers: authHeader()
     };
     
-    return fetch(`${config.apiUrl}/api/risks/?${urlParameters}`, requestOptions).then(handleResponse);
+    return fetch(`/api/risks/?${urlParameters}`, requestOptions).then(handleResponse);
 }
 
 
@@ -42,7 +42,7 @@ function put_field(riskid,field){
     };
     requestOptions.headers['Accept']='application/json'
     requestOptions.headers['Content-Type']='application/json; charset=UTF-8'
-    let url=`${config.apiUrl}/api/risks/` + riskid +'/'
+    let url=`/api/risks/` + riskid +'/'
     
     return fetch(url, requestOptions).then(handleResponse);;
 
